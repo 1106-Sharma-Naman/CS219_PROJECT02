@@ -78,34 +78,12 @@ unsigned int readNumber(string txt)
         text = txt.substr(1);
     }
 
-    bool is_hex = false;
-
-if (txt.size() > 1)
-{
-    if (txt[0] == '0')
+    if (txt.size() > 1 && txt[0] == '0' && (txt[1] == 'x' || txt[1] == 'X'))
     {
-        if (txt[1] == 'x')
-        {
-            is_hex = true;
-        }
-        else
-        {
-            if (txt[1] == 'X')
-            {
-                is_hex = true;
-            }
-        }
-    }
-}
-
-    if (is_hex == true)     
-    {
-    string hex_part;
-    hex_part = txt.substr(2);
-
-    stringstream ss;
-    ss << hex << hex_part;
-    ss >> number;
+        string only_hex = txt.substr(2);
+        stringstream ss;
+        ss << hex << only_hex;
+        ss >> number;
     }
     else
     {
