@@ -1,0 +1,12 @@
+by- Naman Sharma
+Project 2
+
+This project was about making a small CPU simulator in C++. We made the program read instructions from an input file, split each line into command and operands, and then run the instruction one by one.
+
+I used multiple files to keep the code clean. main.cpp reads the file, the parser files break the line into parts, and the processor files do the main work. In the processor part, we handled calculations like MOV, ADD, SUB, AND, OR, XOR, LOAD, STORE, CMP, BEQ, BNE, and BAL.
+
+I made 8 registers from R0 to R7 and also a small memory array for the given memory addresses. After every instruction, the program prints the register array and memory array, so we can clearly see what changed after each step.
+
+We also added checks for wrong instructions. For example, if the operand count is wrong, if a register use is invalid, or if the memory address is out of range, the program prints an error message. For branch instructions, we used the zero flag from CMP and then printed if the branch will be taken or not.
+
+So basically, what we did was make a simple processor program that reads instructions, checks them, updates registers   and memory, and prints the result after every line. This project helped us understand in a better way how instructions, registers, memory, and flags work together.
