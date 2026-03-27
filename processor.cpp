@@ -75,7 +75,7 @@ unsigned int readNumber(string txt)
 
     if (txt.size() > 0 && txt[0] == '#')
     {
-        text = txt.substr(1);
+        txt = txt.substr(1);
     }
 
     if (txt.size() > 1 && txt[0] == '0' && (txt[1] == 'x' || txt[1] == 'X'))
@@ -88,7 +88,7 @@ unsigned int readNumber(string txt)
     else
     {
         stringstream ss;
-        ss << text;
+        ss << txt;
         ss >> number;
     }
 
@@ -195,12 +195,17 @@ void printInvalidCount()
 
 void printMemoryError()
 {
-    cout << "Invalid Instruction. Memory out-of-range." << endl;
+    cout << "Invalid Instruction. out of range.\n";
+}
+
+void printInvalidRegister()
+{
+    cout << "Invalid register" << endl;
 }
 
 void doMOV(ParsedLine data)
 {
-    if (data.comma_count != 1)
+    if (data.commaCount != 1)
     {
         printInvalidCount();
         return;
@@ -231,7 +236,7 @@ void doMOV(ParsedLine data)
 
 void doMathOperation(ParsedLine data)
 {
-    if (data.comma_count != 2)
+    if (data.commaCount != 2)
     {
         printInvalidCount();
         return;
@@ -245,7 +250,7 @@ void doMathOperation(ParsedLine data)
 
     if (isImmediateValue(data.second))
     {
-        printInvalidInstruction();
+        printInvalidRegister();
         return;
     }
 
@@ -292,7 +297,7 @@ void doMathOperation(ParsedLine data)
 
 void doCMP(ParsedLine data)
 {
-    if (data.comma_count != 1)
+    if (data.commaCount != 1)
     {
         printInvalidCount();
         return;
@@ -335,7 +340,7 @@ void doCMP(ParsedLine data)
 
 void doLOAD(ParsedLine data)
 {
-    if (data.comma_count != 1)
+    if (data.commaCount != 1)
     {
         printInvalidCount();
         return;
@@ -369,7 +374,7 @@ void doLOAD(ParsedLine data)
 
 void doSTORE(ParsedLine data)
 {
-    if (data.comma_count != 1)
+    if (data.commaCount != 1)
     {
         printInvalidCount();
         return;
@@ -404,7 +409,7 @@ void doSTORE(ParsedLine data)
 
 void doBranch(ParsedLine data)
 {
-    if (data.comma_count != 0)
+    if (data.commaCount != 0)
     {
         printInvalidCount();
         return;

@@ -45,7 +45,7 @@ bool parseLine(string text, ParsedLine &data)
     data.first = "";
     data.second = "";
     data.third = "";
-    data.commaoCount = 0;
+    data.commaCount = 0;
     data.empty_line = false;
 
     string check = removeSpaces(text);
@@ -70,21 +70,27 @@ bool parseLine(string text, ParsedLine &data)
     {
         data.first = rest;
     }
-    else if (data.commaCount == 1)
+    else
     {
-        int comma_place = rest.find(',');
+        if (data.commaCount == 1)
+        {
+            int comma_place = rest.find(',');
 
-        data.first = rest.substr(0, commaPlace);
-        data.second = rest.substr(commaPlace + 1);
-    }
-    else if (data.commaCount == 2)
-    {
-        int firstComma = rest.find(',');
-        int commaTwo = rest.find(',', firstComma + 1);
+            data.first = rest.substr(0, comma_place);
+            data.second = rest.substr(comma_place + 1);
+        }
+        else
+        {
+            if (data.commaCount == 2)
+            {
+                int firstComma = rest.find(',');
+                int commaTwo = rest.find(',', firstComma + 1);
 
-        data.first = rest.substr(0, firstComma);
-        data.second = rest.substr(firstComma + 1, commaTwo - firstComme - 1);
-        data.third = rest.substr(commaTwo + 1);
+                data.first = rest.substr(0, firstComma);
+                data.second = rest.substr(firstComma + 1, commaTwo - firstComma - 1);
+                data.third = rest.substr(commaTwo + 1);
+            }
+        }
     }
 
     return true;

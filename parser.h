@@ -2,6 +2,7 @@
 #define PARSER_H
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ struct ParsedLine
     string first;
     string second;
     string third;
-    int comma_count;
+    int commaCount;
     bool empty_line;
 };
 
